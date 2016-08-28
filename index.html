@@ -1,0 +1,154 @@
+<html>
+<head>
+	<meta charset="utf-8"/>
+	<title>Mon CV - Maxime SANMARTIN</title>
+	<link href='style/style.css' rel='stylesheet' type='text/css'/>
+	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<script src="js/script.js"></script>
+	<link rel="icon" type="image/png" href="images/gravatar-perso-min.png" />
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One|Cinzel' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
+</head>
+<body>
+	<div id="main">
+		<div id="header">
+			<span id="headLeft">
+				<div id="nom">
+					<h2>Maxime SANMARTIN</h2>
+				</div>
+				<div id="titre">
+					<h3>Domotique / Automatisation de l'habitat</h3>
+				</div>
+			</span>
+			<span id="headRight">
+				<ul> <!-- Liste Horizontale -->
+					<a><li>Accueil</li></a>
+					<a><li>Compétences</li></a>
+					<a><li>Expériences</li></a>
+					<a><li>Formations</li></a>
+				</ul>
+			</span>
+		</div>
+		<div id="body">
+			<div id="bodyPres">
+				<h2>Présentation</h2>
+				<p>
+					Je m'appelle Maxime, j'ai 21 ans et je suis étudiant ingénieur en Système Robotiques et Intéractifs (SRI)
+					<br/>à L'Université Paul Sabatier, Sciences de l'Ingénierie et des Technologies (UPSSITECH) à Toulouse, en première année.
+				</p>
+			</div>
+			<hr></hr>
+			<div id="bodyCont">
+				<span class="content">
+					<div>
+						<img src="images/smartphone.png"></img>
+					</div>
+					L'arrivée dans les années 2000 des objets connectés a engendré une avancée considérable dans le monde de l'électronique.
+				</span>
+				<span class="content">
+					<div><img src="images/home.png"></img></div>
+					La domotique a ainsi pu s'insérer dans ce secteur et proposer un nouveau marché.
+				</span>
+				<span class="content">
+					<div><img src="images/trends.png"></img></div>
+					Inspiré par les nouvelles technologies et les objets connectés,
+					la domotique représente un domaine d'avenir !
+				</span>
+			</div>
+		</div>
+		<div id="footer">
+			<span class="foot">
+				<span><i class="fa fa-phone-square fa-3x"></i></span>
+				<span>
+					<div class="footTit">Téléphone</div>
+					<div class="footCont">06 04 17 37 58</div>
+				</span>
+			</span>
+			<span class="foot">
+				<span><i class="fa fa-envelope-square fa-3x"></i></span>
+				<span>
+					<div class="footTit">Contact</div>
+					<div class="footCont">maximesanmartin@gmail.com</div>
+				</span>
+			</span>
+			<span class="foot">
+				<span><i class="fa fa-linkedin-square fa-3x"></i></span>
+				<span>
+					<div class="footTit">Linkedin</div>
+					<div class="footCont"><a href="https://fr.linkedin.com/pub/maxime-sanmartin/82/3ab/1ba">Cliquez ici pour voir mon profil</a></div>
+				</span>
+			</span>
+		</div>
+	</div>
+	<div id="competences">
+	</div>
+	<div id="experiences">
+	</div>
+	<div id="formations">
+	</div>
+	<div id="condGen">
+		<br/>
+		Ce site web a été réalisé à la main par Maxime SANMARTIN en HTML5/CSS3/JQuery
+		<hr></hr>
+		<h5>CV Maxime SANMARTIN 2015 - 2015 : Tous droits réservés</h5>
+		<h6>Une utilisation frauduleuse des données de ce site peut entraîner une sanction personnelle</h6>
+	</div>
+	<div id="backUp">
+		<a href="#"><img src="images/arrow.png"/></a>
+	</div>
+</body>
+</html>
+
+<script>
+	$(document).ready(function() {
+		var body = $('html, body');
+		$window = $(window);
+		if($window.scrollTop() != 0)
+			$ind = Math.ceil($window.scrollTop()/989)-1;
+		else
+			$ind = 0;
+		$("li:eq("+$ind+")").addClass("over");
+		$("#bodyPic img").load(function() {
+			$(this).fadeOut(0, function(){
+			//on la ré-affiche avec un effet de transparence
+				$(this).fadeIn(1000);
+			});
+		});
+		if ($window.scrollTop() > 500){
+			$("ul").addClass("js");
+			$("#backUp").show("slow");
+		}
+		else{
+			$("ul").removeClass("js");
+			$("#backUp").hide();
+		}
+		// SCROLL EVENT
+		$window.scroll(function() {
+			$("li").removeClass("over");
+			if ($window.scrollTop() > 500){
+				$("ul").addClass("js");
+				$("#backUp").show("slow");
+			}
+			else{
+				$("ul").removeClass("js");
+				$("#backUp").hide("fast");
+			}
+			if($window.scrollTop() != 0)
+				$ind = Math.ceil($window.scrollTop()/989)-1;
+			else
+				$ind = 0;
+			$("li:eq("+$ind+")").addClass("over");
+		});
+		// MOUSE CLICK EVENT
+		$("li").click(function(){
+			body.animate({scrollTop:991 * $(this).index("li")}, '1500', 'swing');
+		})
+		$("#backUp").click(function(){
+			body.animate({scrollTop:0}, '1500', 'swing');
+		});
+		$(".content img").css("left", "-300%");
+		$(".content img").animate({ "left": "0" }, 200 );
+	});
+</script>
