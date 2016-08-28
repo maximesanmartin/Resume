@@ -2,11 +2,11 @@
 <head>
 	<meta charset="utf-8"/>
 	<title>Mon CV - Maxime SANMARTIN</title>
-	<link href='style/style.css' rel='stylesheet' type='text/css'/>
-	<link rel="stylesheet" type="text/css" href="font-awesome-4.3.0/css/font-awesome.min.css">
+	<link rel="icon" type="image/png" href="img/gravatar-perso-min.png" />
 	<script src="js/script.js"></script>
-	<link rel="icon" type="image/png" href="images/gravatar-perso-min.png" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="js/jquery.min.js"></script>
+	<link href='css/style.css' rel='stylesheet' type='text/css'/>
+	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Poiret+One|Cinzel' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 	<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic">
@@ -43,16 +43,16 @@
 			<div id="bodyCont">
 				<span class="content">
 					<div>
-						<img src="images/smartphone.png"></img>
+						<img src="img/smartphone.png"></img>
 					</div>
 					L'arrivée dans les années 2000 des objets connectés a engendré une avancée considérable dans le monde de l'électronique.
 				</span>
 				<span class="content">
-					<div><img src="images/home.png"></img></div>
+					<div><img src="img/home.png"></img></div>
 					La domotique a ainsi pu s'insérer dans ce secteur et proposer un nouveau marché.
 				</span>
 				<span class="content">
-					<div><img src="images/trends.png"></img></div>
+					<div><img src="img/trends.png"></img></div>
 					Inspiré par les nouvelles technologies et les objets connectés,
 					la domotique représente un domaine d'avenir !
 				</span>
@@ -96,59 +96,7 @@
 		<h6>Une utilisation frauduleuse des données de ce site peut entraîner une sanction personnelle</h6>
 	</div>
 	<div id="backUp">
-		<a href="#"><img src="images/arrow.png"/></a>
+		<a href="#"><img src="img/arrow.png"/></a>
 	</div>
 </body>
 </html>
-
-<script>
-	$(document).ready(function() {
-		var body = $('html, body');
-		$window = $(window);
-		if($window.scrollTop() != 0)
-			$ind = Math.ceil($window.scrollTop()/989)-1;
-		else
-			$ind = 0;
-		$("li:eq("+$ind+")").addClass("over");
-		$("#bodyPic img").load(function() {
-			$(this).fadeOut(0, function(){
-			//on la ré-affiche avec un effet de transparence
-				$(this).fadeIn(1000);
-			});
-		});
-		if ($window.scrollTop() > 500){
-			$("ul").addClass("js");
-			$("#backUp").show("slow");
-		}
-		else{
-			$("ul").removeClass("js");
-			$("#backUp").hide();
-		}
-		// SCROLL EVENT
-		$window.scroll(function() {
-			$("li").removeClass("over");
-			if ($window.scrollTop() > 500){
-				$("ul").addClass("js");
-				$("#backUp").show("slow");
-			}
-			else{
-				$("ul").removeClass("js");
-				$("#backUp").hide("fast");
-			}
-			if($window.scrollTop() != 0)
-				$ind = Math.ceil($window.scrollTop()/989)-1;
-			else
-				$ind = 0;
-			$("li:eq("+$ind+")").addClass("over");
-		});
-		// MOUSE CLICK EVENT
-		$("li").click(function(){
-			body.animate({scrollTop:991 * $(this).index("li")}, '1500', 'swing');
-		})
-		$("#backUp").click(function(){
-			body.animate({scrollTop:0}, '1500', 'swing');
-		});
-		$(".content img").css("left", "-300%");
-		$(".content img").animate({ "left": "0" }, 200 );
-	});
-</script>
