@@ -2,18 +2,14 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { linkTo } from '@storybook/addon-links'
-import { Welcome } from '@storybook/react/demo'
 import { ThemeProvider } from 'styled-components'
 
-import theme from '../app/theme'
-import { Button as ButtonComponent } from '../app/components'
-
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />)
+import theme from '../../theme'
+import ButtonComponent from './'
 
 const Button = (props) => (
   <ThemeProvider theme={theme}>
-    <ButtonComponent palette='primary' {...props} />
+    <ButtonComponent {...props} />
   </ThemeProvider>
 )
 

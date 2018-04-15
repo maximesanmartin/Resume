@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 import { palette, font } from 'styled-theme'
 
-export default styled.button`
+const Button = styled.button`
   font-family: ${font('primary')};
   padding: 0.25em 1em;
   font-size: 1em;
@@ -17,3 +17,9 @@ export default styled.button`
   }
   border: 2px solid ${palette(0)};
 `
+
+Button.defaultProps = {
+  palette: 'secondary'
+}
+
+export default Button
