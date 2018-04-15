@@ -1,17 +1,19 @@
 import styled from 'styled-components'
+import { palette, font } from 'styled-theme'
 
 export default styled.button`
+  font-family: ${font('primary')};
   padding: 0.25em 1em;
   font-size: 1em;
-  background-color: ${(props) => props.theme.primary.c};
-  color: ${(props) => props.theme.primary.bg};
   box-shadow: none;
   outline: 0;
-  border: 2px solid ${(props) => props.theme.primary.bg};
   border-radius: 3px;
-
+  transition: background-color 0.2s ease-out, color 0.5s;
+  background-color: ${palette('grayscale', 5)};
+  color: ${palette(0)};
   &:hover, &:focus {
-    background-color: ${(props) => props.theme.primary.bg};
-    color: ${(props) => props.theme.primary.c};
+    background-color: ${palette(0)};
+    color: ${palette('grayscale', 5)};
   }
+  border: 2px solid ${palette(0)};
 `
