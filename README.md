@@ -1,4 +1,5 @@
 # Maxime SANMARTIN Resume
 
-- [ ] Style and make the site responsive using styled-components
+- [ ] Make a design of the webpage
+- [ ] Style and make the site responsive using styled-components, styled-tools, styled-system...
 - [ ] Use Linkedin API to fetch experiences
