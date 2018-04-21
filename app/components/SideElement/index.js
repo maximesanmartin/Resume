@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { palette, font } from 'styled-theme'
 
@@ -6,10 +7,12 @@ const StyledLi = styled.li`
   background: ${palette('grayscale', 2)};
   position: relative;
   cursor: pointer;
+  color: ${palette(0)};
+  font-family: ${font('primary')};
 
-  &:before {
+  :before {
     height: 100%;
-    width: 5px;
+    width: ${({ sideWidth }) => sideWidth}px;
     left: 0;
     top: 0;
     position: absolute;
@@ -20,7 +23,7 @@ const StyledLi = styled.li`
     z-index: 50;
   }
 
-  &:hover, &:focus {
+  :hover, :focus {
     &:before {
       width: 100%;
     }
@@ -32,25 +35,58 @@ const StyledLi = styled.li`
 `
 
 const SideElementComponent = styled.a`
-  font-family: ${font('primary')};
   transition: 0.4s;
   background: transparent !important;
-  color: ${palette(0)};
   z-index: 100;
   text-transform: uppercase;
   position: relative;
   padding: 0.25em 1em;
+  padding-left: ${({ sideWidth }) => sideWidth + 8}px;
   display: inline-block;
 `
 
-const SideElement = (props) => (
-  <StyledLi {...props}>
-    <SideElementComponent {...props} />
+/**
+ * TODO Rename it when we have a styled Sidebar
+ * SideElement Component
+ * Works as a <li><a></li> element
+ * Used for sidebar styling lists
+ * Usage:
+ * <SideElement [palette='**theme's palette name**'sideWidth={**your value**|5(default)}] />
+ */
+const SideElement = ({ palette: paletteTheme, sideWidth, font: fontTheme, children }) => (
+  <StyledLi palette={paletteTheme} sideWidth={sideWidth} font={fontTheme}>
+    <SideElementComponent sideWidth={sideWidth}>
+      {children}
+    </SideElementComponent>
   </StyledLi>
 )
 
+SideElement.propTypes = {
+  /**
+   * Defines the color according to the given theme
+   * @type {String}
+   */
+  palette: PropTypes.string,
+  /**
+   * Left color band's width
+   * @type {number}
+   */
+  sideWidth: PropTypes.number,
+  /**
+   * Theme's font (primary)
+   * @type {String}
+   */
+  font: PropTypes.string,
+  /**
+   * Children's node
+   * @type {node}
+   */
+  children: PropTypes.node
+}
+
 SideElement.defaultProps = {
-  palette: 'secondary'
+  palette: 'secondary',
+  sideWidth: 5
 }
 
 export default SideElement
