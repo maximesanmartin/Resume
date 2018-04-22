@@ -49,14 +49,14 @@ export default class GridItem extends PureComponent {
 }
 
 const GridItemWrapper = styled.div`
-  flex: 0 0 auto;
   margin: 0;
   box-sizing: border-box;
   display: block;
   padding: ${({ spacing }) => `${spacing / 2}px`};
   max-width: ${({ size }) => `${size * (100 / 12)}%`};
-  flex: 1 1 ${({ size }) => `${size * (100 / 12)}%`};
+  flex: 0 0 ${({ size }) => `${size * (100 / 12)}%`};
   display: flex;
   justify-content: center;
   align-items: center;
+  min-width: 200px; /* breakpoint */
 `
