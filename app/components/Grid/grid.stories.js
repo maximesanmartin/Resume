@@ -1,12 +1,11 @@
 import React from 'react'
-import { storiesOf } from '@storybook/react'
-import { withKnobs, select } from '@storybook/addon-knobs/react'
+import PropTypes from 'prop-types'
+import { select } from '@storybook/addon-knobs/react'
 import Grid from './index'
 import { SPACING, GRID_SIZES } from './constants'
+import { createStories } from '../stories/utils'
 
-const stories = storiesOf('Grid', module)
-
-stories.addDecorator(withKnobs)
+const stories = createStories('Grid')
 
 const root = {
   marginBottom: '20px'
@@ -23,48 +22,29 @@ const simple = {
   height: '50px'
 }
 
+const GridItem = ({ size, children }) => (
+  <div size={size} style={simple}>
+    {children || `size=${size}`}
+  </div>
+)
+GridItem.defaultProps = {
+  size: 6
+}
+GridItem.propTypes = {
+  size: PropTypes.number,
+  children: PropTypes.node
+}
+
 stories.add('One Grid', () => (
   <div>
     <div style={root}>
       <Grid spacing={Number(select('Spacing', SPACING, 16))}>
-        <div
-          size={Number(select(
-            'Size',
-            GRID_SIZES,
-            12
-          ))}
-          style={simple}
-        >
-          dynamic size={Number(select(
-            'Size',
-            GRID_SIZES,
-            12
-          ))}
-        </div>
-        <div style={simple} size={6}>
-          size=6
-        </div>
-        <div style={simple} size={6}>
-          size=6
-        </div>
-        <div style={simple} size={3}>
-          size=3
-        </div>
-        <div style={simple} size={3}>
-          size=3
-        </div>
-        <div style={simple} size={3}>
-          size=3
-        </div>
-        <div style={simple} size={3}>
-          size=3
-        </div>
-        <div style={simple} size={11}>
-          size=11
-        </div>
-        <div style={simple} size={4}>
-          size=4
-        </div>
+        <GridItem size={Number(select('Size', GRID_SIZES, 12))}>
+          dynamic size={Number(select('Size', GRID_SIZES, 12))}
+        </GridItem>
+        {[6, 6, 3, 3, 3, 3, 11, 4].map((size) => (
+          <GridItem size={size} />
+        ))}
       </Grid>
     </div>
   </div>
@@ -72,31 +52,16 @@ stories.add('One Grid', () => (
 
 stories.add('Nested Grids', () => (
   <div style={grid}>
-    <Grid spacing={Number(select('Spacing', [0, 8, 16, 24, 40], 16))}>
-      <Grid spacing={Number(select('Spacing', [0, 8, 16, 24, 40], 16))} size={8}>
-        <div style={simple} size={3}>
-          Grid 1 - Size 3
-        </div>
-        <div style={simple} size={3}>
-          Grid 1 - Size 3
-        </div>
-        <div style={simple} size={6}>
-          Grid 1 - Size 6
-        </div>
+    <Grid spacing={Number(select('Spacing', SPACING, 16))}>
+      <Grid spacing={Number(select('Spacing', SPACING, 16))} size={8}>
+        {[3, 3, 6].map((size) => (
+          <GridItem size={size} />
+        ))}
       </Grid>
-      <Grid spacing={Number(select('Spacing', [0, 8, 16, 24, 40], 16))} size={4}>
-        <div style={simple} size={6}>
-          Grid 2 - Size 6
-        </div>
-        <div style={simple} size={6}>
-          Grid 2 - Size 6
-        </div>
-        <div style={simple} size={6}>
-          Grid 2 - Size 6
-        </div>
-        <div style={simple} size={6}>
-          Grid 2 - Size 6
-        </div>
+      <Grid spacing={Number(select('Spacing', SPACING, 16))} size={4}>
+        {[6, 6, 6, 6].map((size) => (
+          <GridItem size={size} />
+        ))}
       </Grid>
     </Grid>
   </div>
