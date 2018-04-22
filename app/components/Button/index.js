@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { palette, font } from 'styled-theme'
 
@@ -11,6 +12,7 @@ const Button = styled.button`
   transition: background-color 0.2s ease-out, color 0.5s;
   background-color: ${palette('grayscale', 5)};
   color: ${palette(0)};
+  cursor: pointer;
   &:hover, &:focus {
     background-color: ${palette(0)};
     color: ${palette('grayscale', 5)};
@@ -20,6 +22,10 @@ const Button = styled.button`
 
 Button.defaultProps = {
   palette: 'secondary'
+}
+
+Button.propTypes = {
+  palette: PropTypes.string
 }
 
 export default Button

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
@@ -7,19 +8,25 @@ import { ThemeProvider } from 'styled-components'
 import theme from '../../theme'
 import ButtonComponent from './'
 
-const Button = (props) => (
+const StoryButton = ({ children, ...rest }) => (
   <ThemeProvider theme={theme}>
-    <ButtonComponent {...props} />
+    <ButtonComponent {...rest}>
+      {children || 'Hello Button'}
+    </ButtonComponent>
   </ThemeProvider>
 )
 
+StoryButton.propTypes = {
+  children: PropTypes.node
+}
+
 storiesOf('Button', module)
-  .add('with primary text', () => <Button palette='primary' onClick={action('clicked')}>Hello Button</Button>)
-  .add('with secondary text', () => <Button palette='secondary' onClick={action('clicked')}>Hello Button</Button>)
+  .add('with primary text', () => <StoryButton palette='primary' onClick={action('clicked')} />)
+  .add('with secondary text', () => <StoryButton palette='secondary' onClick={action('clicked')} />)
   .add('with some emoji', () => (
-    <Button onClick={action('clicked')}>
+    <StoryButton onClick={action('clicked')}>
       <span role='img' aria-label='so cool'>
         😀 😎 👍 💯
       </span>
-    </Button>
+    </StoryButton>
   ))
