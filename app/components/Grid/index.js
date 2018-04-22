@@ -2,8 +2,7 @@ import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import GridItem from './grid-item'
-
-const SPACING = [0, 8, 16, 24, 40]
+import { SPACING } from './constants'
 
 /* eslint-disable no-tabs */
 /**
@@ -35,7 +34,7 @@ export default class Grid extends PureComponent {
   };
 
   static defaultProps = {
-    spacing: 0
+    spacing: SPACING[0]
   }
 
   renderChildren = () => (
@@ -57,6 +56,7 @@ export default class Grid extends PureComponent {
   }
 }
 
+// TODO Breakpoints
 const GridContainer = styled.div`
   width: 100%;
   height: 100%;

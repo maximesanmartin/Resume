@@ -1,9 +1,7 @@
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
-
-const SPACING = [0, 8, 16, 24, 40]
-const GRID_SIZES = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+import { SPACING, GRID_SIZES } from './constants'
 
 /**
  * GridItem Component
@@ -32,7 +30,7 @@ export default class GridItem extends PureComponent {
   };
 
   static defaultProps = {
-    spacing: 0
+    spacing: SPACING[0]
   }
 
   render() {
@@ -55,9 +53,9 @@ const GridItemWrapper = styled.div`
   margin: 0;
   box-sizing: border-box;
   display: block;
-  padding: ${({ spacing }) => `${spacing / 2}px`}
-  max-width: ${({ size }) => `${size * (100 / 12)}%`}
-  flex-basis: ${({ size }) => `${size * (100 / 12)}%`}
+  padding: ${({ spacing }) => `${spacing / 2}px`};
+  max-width: ${({ size }) => `${size * (100 / 12)}%`};
+  flex: 1 1 ${({ size }) => `${size * (100 / 12)}%`};
   display: flex;
   justify-content: center;
   align-items: center;
