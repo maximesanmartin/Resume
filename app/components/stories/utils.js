@@ -16,10 +16,13 @@ const themeComponent = (name, Component) => ({ children, ...rest }) => (
   </ThemeProvider>
 )
 
+export const createStories = (name) => (storiesOf(name, module)
+  .addDecorator(withKnobs)
+)
+
 export const createDefaultStories = (name, Component) => {
-  const stories = storiesOf(name, module)
+  const stories = createStories(name)
   const ThemeComponent = themeComponent(name, Component)
-  stories.addDecorator(withKnobs)
   stories.add('with text', () => <ThemeComponent palette={select('Palette', Object.keys(theme.palette), 'primary')} onClick={action('clicked')} />)
   stories.add('with emojis :D', () => (
     <ThemeComponent palette={select('Palette', Object.keys(theme.palette), 'primary')} onClick={action('clicked')}>
@@ -30,4 +33,10 @@ export const createDefaultStories = (name, Component) => {
   return stories
 }
 
-// TODO add "addStorie"
+// TODO add "addStory"
+export const addStory = (story, name, Component, props) => {
+  const ThemeComponent = themeComponent(name, Component)
+  return story.add(name, () => (
+    <ThemeComponent {...props} />
+  ))
+}
