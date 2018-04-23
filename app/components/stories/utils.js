@@ -1,7 +1,7 @@
 import React from 'react'
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { withKnobs, select, text } from '@storybook/addon-knobs'
+import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
 import { ThemeProvider } from 'styled-components'
 
 import theme from '../../theme'
@@ -23,7 +23,7 @@ export const createStories = (name) => (storiesOf(name, module)
 export const createDefaultStories = (name, Component) => {
   const stories = createStories(name)
   const ThemeComponent = themeComponent(name, Component)
-  stories.add('with text', () => <ThemeComponent palette={select('Palette', Object.keys(theme.palette), 'primary')} onClick={action('clicked')} />)
+  stories.add('with text', () => <ThemeComponent disabled={boolean('disabled')} palette={select('Palette', Object.keys(theme.palette), 'primary')} onClick={action('clicked')} />)
   stories.add('with emojis :D', () => (
     <ThemeComponent palette={select('Palette', Object.keys(theme.palette), 'primary')} onClick={action('clicked')}>
       <span role='img' aria-label='so cool'>😀 😎 👍 💯</span>

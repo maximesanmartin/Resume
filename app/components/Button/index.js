@@ -1,3 +1,4 @@
+import React from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { palette, font } from 'styled-theme'
@@ -13,19 +14,39 @@ const Button = styled.button`
   background-color: ${palette('grayscale', 5)};
   color: ${palette(0)};
   cursor: pointer;
-  &:hover, &:focus {
-    background-color: ${palette(0)};
-    color: ${palette('grayscale', 5)};
+  &:not(.disabled) {
+    &:hover, &:focus {
+      background-color: ${palette(0)};
+      color: ${palette('grayscale', 5)};
+    }
+  }
+  &.disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
   }
   border: 2px solid ${palette(0)};
 `
 
-Button.defaultProps = {
+
+const ButtonComponent = ({ disabled, onClick, ...rest }) => {
+  const className = disabled ? 'disabled' : ''
+  return (
+    <Button
+      className={className}
+      onClick={!disabled && onClick}
+      {...rest}
+    />
+  )
+}
+
+ButtonComponent.defaultProps = {
   palette: 'secondary'
 }
 
-Button.propTypes = {
-  palette: PropTypes.string
+ButtonComponent.propTypes = {
+  palette: PropTypes.string,
+  disabled: PropTypes.bool,
+  onClick: PropTypes.func
 }
 
-export default Button
+export default ButtonComponent
