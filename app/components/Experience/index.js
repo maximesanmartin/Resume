@@ -32,7 +32,7 @@ const ExperienceHeader = styled.h3`
   }
 `
 
-const ExperienceBody = styled.p`
+const ExperienceBody = styled.div`
   border: 2px solid #BFBFBF;
   border-top: 0;
 `

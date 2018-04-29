@@ -1,15 +1,21 @@
 import React from 'react'
-import { text } from '@storybook/addon-knobs'
+import { text, date } from '@storybook/addon-knobs'
 
 import Experience from './'
 import { createStories, themeComponent } from '../stories/utils'
+
+const dateKnob = (name, defaultValue = new Date()) => {
+  const stringTimestamp = date(name, defaultValue)
+  return new Date(stringTimestamp)
+}
 
 const ThemedExperience = themeComponent('Experience', Experience)
 const stories = createStories('Experience')
 stories.add('Default', () => (
   <ThemedExperience
     title={text('title', 'Lorem Ipsum')}
-    start={new Date()}
+    start={dateKnob('start')}
+    end={dateKnob('end')}
     position={text('position', 'Full Stack Developer')}
     country={text('country', 'New York')}
   >
