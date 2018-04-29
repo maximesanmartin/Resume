@@ -26,7 +26,7 @@ const ExperienceHeader = styled.h3`
       width: 0;
       height: 0;
       border-style: solid;
-      top: 10px;
+      margin-top: -15px;
       border-color: ${({ theme }) => theme.experience.backgroundColor} ${({ theme }) => theme.experience.backgroundColor} transparent transparent;
       border-width: 15px;
   }
@@ -69,5 +69,7 @@ Experience.propTypes = {
   title: PropTypes.node,
   children: PropTypes.node
 }
+
+Experience.displayName = 'Experience'
 
 export default Experience
