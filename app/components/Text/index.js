@@ -6,8 +6,9 @@ import { space } from 'styled-system'
 const ce = React.createElement
 
 export default styled(({ is, children, ...props }) => ce(is, props, children)).attrs({
-  is: 'span'
+  is: 'span',
+  palette: 'grayscale'
 })`
-  color: ${palette(0, 'grayscale.5')};
+  color: ${palette(0)};
   ${space}
 `
