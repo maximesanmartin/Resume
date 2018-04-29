@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import PropTypes from 'prop-types'
 import { FormattedDate } from 'react-intl'
 
+import Text from '../Text'
+
 const ExperienceWrapper = styled.div`
   & > * {
     padding: 15px;
@@ -32,6 +34,7 @@ const ExperienceHeader = styled.h3`
 
 const ExperienceBody = styled.p`
   border: 2px solid #BFBFBF;
+  border-top: 0;
 `
 
 const DATE_FORMAT = {
@@ -45,15 +48,15 @@ const Experience = ({
   end,
   position,
   country,
+  title,
   children
 }) => (
   <ExperienceWrapper>
-    <ExperienceHeader>Lorem Ipsum</ExperienceHeader>
+    <ExperienceHeader>{title}</ExperienceHeader>
     <ExperienceBody>
-      {/* TODO Text component */}
-      <b><FormattedDate value={start} {...DATE_FORMAT} /> - {end ? <FormattedDate value={end} {...DATE_FORMAT} /> : '?'}</b><br />
-      <b>{position} - {country}</b><br />
-      {children}
+      <Text is='h4' my={1}><FormattedDate value={start} {...DATE_FORMAT} /> - {end ? <FormattedDate value={end} {...DATE_FORMAT} /> : '?'}</Text>
+      <Text is='h4' my={1}>{position} - {country}</Text>
+      <Text is='span'>{children}</Text>
     </ExperienceBody>
   </ExperienceWrapper>
 )
@@ -63,6 +66,7 @@ Experience.propTypes = {
   end: PropTypes.object,
   position: PropTypes.string,
   country: PropTypes.string,
+  title: PropTypes.node,
   children: PropTypes.node
 }
 
