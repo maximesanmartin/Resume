@@ -5,6 +5,8 @@
 - [ ] Make a design of the webpage
 ### Style and make the site responsive using styled-components, styled-tools, styled-system...
 - [ ] Progress bar (line + circle) for skills
-- [ ] Experience
+#### Experience
+- [ ] TimeLine
+- [ ] One Experience Component
 ### Linkedin
 - [ ] Use Linkedin API to fetch experiences
