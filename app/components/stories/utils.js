@@ -9,7 +9,7 @@ import theme from '../../theme'
 
 // Theme Provider's HOC
 /* eslint-disable react/prop-types */
-const themeComponent = (name, Component) => ({ children, ...rest }) => (
+export const themeComponent = (name, Component) => ({ children, ...rest }) => (
   <ThemeProvider theme={theme}>
     <IntlProvider locale={navigator.language} defaultLocale='fr'>
       <Component {...rest}>
