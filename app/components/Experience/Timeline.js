@@ -16,16 +16,17 @@ const Timeline = styled.div`
 `
 
 class ExperienceTimeline extends React.Component {
-  constructor(props) {
-    super(props)
-
-    this.state = {}
-  }
+  renderChildren = () => React.Children.map(this.props.children, (child) => (
+    React.cloneElement(child, {
+      ...child.props,
+      reverse: true
+    })
+  ))
 
   render() {
     return (
       <Timeline>
-        {this.props.children}
+        {this.renderChildren()}
       </Timeline>
     )
   }
