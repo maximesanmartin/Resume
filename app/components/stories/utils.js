@@ -3,6 +3,7 @@ import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
 import { withKnobs, select, text, boolean } from '@storybook/addon-knobs'
 import { ThemeProvider } from 'styled-components'
+import { IntlProvider } from 'react-intl'
 
 import theme from '../../theme'
 
@@ -10,9 +11,11 @@ import theme from '../../theme'
 /* eslint-disable react/prop-types */
 const themeComponent = (name, Component) => ({ children, ...rest }) => (
   <ThemeProvider theme={theme}>
-    <Component {...rest}>
-      { children || text('Text', `Hello ${name}`)}
-    </Component>
+    <IntlProvider locale={navigator.language} defaultLocale='fr'>
+      <Component {...rest}>
+        { children || text('Text', `Hello ${name}`)}
+      </Component>
+    </IntlProvider>
   </ThemeProvider>
 )
 
@@ -33,7 +36,6 @@ export const createDefaultStories = (name, Component) => {
   return stories
 }
 
-// TODO add "addStory"
 export const addStory = (story, name, Component, props) => {
   const ThemeComponent = themeComponent(name, Component)
   return story.add(name, () => (

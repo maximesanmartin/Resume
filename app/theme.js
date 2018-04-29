@@ -19,4 +19,9 @@ theme.fonts = {
   quote: 'Georgia, serif'
 }
 
+theme.experience = {
+  backgroundColor: '#3f3f3f',
+  color: '#fff'
+}
+
 export default theme
