@@ -4,24 +4,24 @@ import styled from 'styled-components'
 
 const Timeline = styled.div`
   display: block;
-
-  & > * {
-    width: 45%;
-    position: relative;
-
-    &:nth-child(2n) {
-      float: right;
-    }
-  }
 `
 
 class ExperienceTimeline extends React.Component {
-  renderChildren = () => React.Children.map(this.props.children, (child) => (
-    React.cloneElement(child, {
-      ...child.props,
-      reverse: true
-    })
-  ))
+  renderChildren = () => {
+    const EXPERIENCE_HEIGHT = 160
+    return React.Children.map(this.props.children, (child, index) => (
+      React.cloneElement(child, {
+        ...child.props,
+        reverse: (index + 1) % 2,
+        style: {
+          right: index % 2 ? '0px' : undefined,
+          top: `${(index * 50) + (Math.floor(index / 2) * EXPERIENCE_HEIGHT)}px`,
+          width: '45%',
+          position: 'absolute'
+        }
+      })
+    ))
+  }
 
   render() {
     return (

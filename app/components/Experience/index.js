@@ -45,6 +45,10 @@ const ExperienceHeader = styled.h3`
 const ExperienceBody = styled.div`
   border: 2px solid #BFBFBF;
   border-top: 0;
+
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
 `
 
 const DATE_FORMAT = {
@@ -60,9 +64,10 @@ const Experience = ({
   country,
   title,
   reverse,
-  children
+  children,
+  ...rest
 }) => (
-  <ExperienceWrapper>
+  <ExperienceWrapper {...rest}>
     <ExperienceHeader reverse={reverse}>{title}</ExperienceHeader>
     <ExperienceBody>
       <Text is='h4' my={1}><FormattedDate value={start} {...DATE_FORMAT} /> - {end ? <FormattedDate value={end} {...DATE_FORMAT} /> : '?'}</Text>
